@@ -146,7 +146,7 @@ background-color: #888888;
 }
 
 body.home {
-background-image: url("https://static.vecteezy.com/system/resources/previews/056/702/255/non_2x/stylish-geometric-sports-background-with-sharp-edges-vector.jpg");
+background-image: url("https://t4.ftcdn.net/jpg/04/16/15/39/360_F_416153962_OM9K00x0JZo85BpbbeXjLQHoG9hPvqjA.jpg");
 background-size: cover;
 background-repeat: no-repeat;
 background-attachment: fixed; 
@@ -156,6 +156,6 @@ background-position: center;
 .note {
 font-size: 12px;
 color: #000000;
-text-align: left;
+text-align: center;
 margin-top: 10px;
 }
