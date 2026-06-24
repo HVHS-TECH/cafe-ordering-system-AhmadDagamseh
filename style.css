@@ -214,3 +214,7 @@ margin-top: 10px;
     transform: scale(1.4);
     transition: 0.2s;
 }
+.productLink {
+    text-decoration: none;
+    color: inherit;
+}
