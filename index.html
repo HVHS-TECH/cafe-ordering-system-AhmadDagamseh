@@ -9,19 +9,18 @@
 <script src="script.js"></script>
 <body class="home">
 
-    <!-- NAV + SEARCH + CART -->
 <div class="topbar">
-    <input type="text" id="searchInput" placeholder="Search kits..." onkeyup="searchProducts()">
+<input type="text" id="searchInput" placeholder="Search kits..." onkeyup="searchProducts()">
 
-    <div class="cart-icon" onclick="toggleCart()">
-        🛒 <span id="cartCount">0</span>
-    </div>
+<div class="cart-icon" onclick="toggleCart()">
+🛒 <span id="cartCount">0</span>
+</div>
 </div>
 
 <div id="cartPanel" class="cart-panel">
-    <h2>Your Cart</h2>
-    <div id="cartItems"></div>
-    <button onclick="goToCheckout()">Checkout</button>
+<h2>Your Cart</h2>
+<div id="cartItems"></div>
+<button onclick="goToCheckout()">Checkout</button>
 </div>
 
 
