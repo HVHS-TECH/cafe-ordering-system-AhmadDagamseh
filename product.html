@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Product</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+
+<body>
+
+<div class="product-page">
+    <img id="productImg" src="" alt="">
+    <h1 id="productName"></h1>
+    <h2 id="productPrice"></h2>
+
+    <button id="addBtn">Add to Cart</button>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById("productImg").src = params.get("img");
+    document.getElementById("productName").innerText = params.get("name");
+    document.getElementById("productPrice").innerText = "$" + params.get("price");
+
+    document.getElementById("addBtn").setAttribute("data-name", params.get("name"));
+    document.getElementById("addBtn").setAttribute("data-price", params.get("price"));
+</script>
+
+</body>
+</html>
