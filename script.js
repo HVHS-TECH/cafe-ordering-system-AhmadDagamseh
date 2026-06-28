@@ -1,7 +1,5 @@
 console.log("Hello world!")
-// ------------------------------
-// CART SYSTEM + LOCAL STORAGE
-// ------------------------------
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const cartCount = document.getElementById("cartCount");
@@ -11,7 +9,7 @@ const cartPanel = document.getElementById("cartPanel");
 
 updateCart();
 
-// Add to cart
+
 addToCartButtons.forEach(btn => {
     btn.addEventListener("click", () => {
         const name = btn.dataset.name;
@@ -27,7 +25,7 @@ addToCartButtons.forEach(btn => {
     });
 });
 
-// Update cart UI
+
 function updateCart() {
     cartCount.innerText = cart.length;
     cartItems.innerHTML = "";
@@ -42,25 +40,23 @@ function updateCart() {
     });
 }
 
-// Cart animation
+
 function animateCart() {
     cartCount.classList.add("pop");
     setTimeout(() => cartCount.classList.remove("pop"), 300);
 }
 
-// Toggle cart panel
+
 function toggleCart() {
     cartPanel.classList.toggle("open");
 }
 
-// Go to checkout page
+
 function goToCheckout() {
     window.location.href = "checkout.html";
 }
 
-// ------------------------------
-// SEARCH BAR
-// ------------------------------
+
 function searchProducts() {
     const input = document.getElementById("searchInput").value.toLowerCase();
     const products = document.querySelectorAll(".af");
