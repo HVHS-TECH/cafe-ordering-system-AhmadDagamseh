@@ -191,11 +191,6 @@ margin-top: 10px;
     border: none;
     font-size: 16px;
 }
-.cart-item img {
-    width: -1px;      /* make the image smaller */
-    height: 10px;     /* keep proportions */
-    border-radius: 10px;
-}
 
 .cart-icon {
     font-size: 24px;
