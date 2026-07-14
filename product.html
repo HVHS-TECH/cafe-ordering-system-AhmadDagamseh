@@ -17,14 +17,49 @@
 </div>
 
 <script>
-    const params = new URLSearchParams(window.location.search);
+    <script>
+  const params = new URLSearchParams(window.location.search);
+  const name = params.get("name");
+  const price = params.get("price");
+  const img = params.get("img");
 
-    document.getElementById("productImg").src = params.get("img");
-    document.getElementById("productName").innerText = params.get("name");
-    document.getElementById("productPrice").innerText = "$" + params.get("price");
+  document.getElementById("productImg").src = img || "";
+  document.getElementById("productName").innerText = name || "";
+  document.getElementById("productPrice").innerText = "$" + (price || "0");
 
-    document.getElementById("addBtn").setAttribute("data-name", params.get("name"));
-    document.getElementById("addBtn").setAttribute("data-price", params.get("price"));
+  const addBtn = document.getElementById("addBtn");
+  addBtn.setAttribute("data-name", name);
+  addBtn.setAttribute("data-price", price);
+  addBtn.setAttribute("data-img", img);
+
+  addBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const item = {
+      name: name || "Item",
+      price: Number(price) || 0,
+      img: img || "",
+      qty: 1
+    };
+
+    // merge
+    const existing = cart.find(c => c.name === item.name && Number(c.price) === Number(item.price));
+    if (existing) existing.qty = Number(existing.qty || 0) + 1;
+    else cart.push(item);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    // update badge if present
+    const cartCount = document.getElementById("cartCount");
+    if (cartCount) {
+      const totalItems = cart.reduce((s, it) => s + Number(it.qty || 0), 0);
+      cartCount.innerText = totalItems;
+    }
+    alert("Added to cart");
+  });
+</script>
+
 </script>
 
 </body>
