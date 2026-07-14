@@ -313,7 +313,6 @@ margin-top: 10px;
     padding: 0 16px;
 }
 
-/* Product card sizing: 3 columns on desktop, 2 on tablet, 1 on phone */
 .af {
     flex: 1 1 calc(33.333% - 40px);
     box-sizing: border-box;
@@ -324,21 +323,34 @@ margin-top: 10px;
     margin: 0;
 }
 
-/* Keep images contained and proportional */
 .af img {
     width: 100%;
     height: 260px;
     object-fit: cover;
     display: block;
 }
+.ag {
+    flex: 1 1 calc(33.333% - 40px);
+    box-sizing: border-box;
+    max-width: 360px;
+    min-width: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0;
+}
 
-/* Ensure content area looks consistent */
+.ag img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
 .content {
     padding: 14px;
     background: rgba(255,255,255,0.95);
 }
 
-/* Slightly smaller headings inside cards */
 .content h2 {
     font-size: 20px;
     margin: 8px 0;
@@ -349,7 +361,6 @@ margin-top: 10px;
     margin: 6px 0 12px;
 }
 
-/* Topbar responsiveness */
 .topbar {
     display: flex;
     gap: 12px;
@@ -359,18 +370,15 @@ margin-top: 10px;
     flex-wrap: wrap;
 }
 
-/* Search input grows on larger screens, full width on small screens */
 #searchInput {
     flex: 1 1 280px;
     max-width: 420px;
 }
 
-/* Cart icon stays visible and aligned */
 .cart-icon {
     flex: 0 0 auto;
 }
 
-/* Cart panel responsive behavior */
 .cart-panel {
     right: -400px;
     top: 0;
@@ -379,9 +387,7 @@ margin-top: 10px;
     transition: 0.4s;
 }
 
-/* ---------- Media queries ---------- */
 
-/* Tablet: 2 columns */
 @media (max-width: 900px) {
     .af {
         flex: 1 1 calc(50% - 40px);
@@ -391,9 +397,16 @@ margin-top: 10px;
     .af img {
         height: 240px;
     }
+    .ag {
+        flex: 1 1 calc(50% - 40px);
+        max-width: 420px;
+    }
+
+    .ag img {
+        height: 240px;
+    }
 }
 
-/* Mobile: 1 column, full width cards, stack header */
 @media (max-width: 600px) {
     .containor {
         gap: 14px;
@@ -409,7 +422,15 @@ margin-top: 10px;
     .af img {
         height: 200px;
     }
+ .ag {
+        flex: 1 1 100%;
+        max-width: 100%;
+        border-radius: 14px;
+    }
 
+    .ag img {
+        height: 200px;
+    }
     .topbar {
         align-items: center;
     }
@@ -420,7 +441,6 @@ margin-top: 10px;
         width: 100%;
     }
 
-    /* Make cart panel act like a bottom sheet on phones */
     .cart-panel {
         right: 0;
         left: 0;
@@ -437,7 +457,6 @@ margin-top: 10px;
     }
 }
 
-/* Small polish: reduce logo size on small screens */
 @media (max-width: 600px) {
     .logo {
         width: 140px;
