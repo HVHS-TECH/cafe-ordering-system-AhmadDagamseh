@@ -52,6 +52,20 @@ margin: 20px;
 width: 100%;
 height: auto;
 }
+.ag{
+width: 90%;
+max-width: 1200px;
+border-radius: 30px;
+overflow: hidden;
+box-shadow:8px 8px 16px 0px rgba(0, 0, 0, 0.5);
+margin: 20px;
+
+}
+
+.ag img{
+width: 100%;
+height: auto;
+}
 
 
 .content{
@@ -289,9 +303,7 @@ margin-top: 10px;
 .checkout-btn:hover {
     background: #444;
 }
-/* ---------- Responsive layout for product grid and header ---------- */
 
-/* Make product rows wrap and add consistent gaps */
 .containor {
     display: flex;
     flex-wrap: wrap;
