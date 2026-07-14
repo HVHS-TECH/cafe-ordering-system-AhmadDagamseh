@@ -17,7 +17,6 @@ addToCartButtons.forEach(btn => {
 
         cart.push({ name, price });
 
-        // Save to localStorage
         localStorage.setItem("cart", JSON.stringify(cart));
 
         updateCart();
