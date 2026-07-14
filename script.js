@@ -203,3 +203,48 @@ document.addEventListener("DOMContentLoaded", () => {
   // Expose for debugging
   window._cart = { get: () => cart, add: addToCart, remove: removeFromCart };
 });
+// Add this near the top of script.js (or replace your existing searchProducts)
+let _searchTimeout = null;
+
+window.searchProducts = function () {
+  // debounce so typing is smooth
+  clearTimeout(_searchTimeout);
+  _searchTimeout = setTimeout(() => {
+    const input = document.getElementById("searchInput");
+    if (!input) return;
+    const q = input.value.trim().toLowerCase();
+    const products = document.querySelectorAll(".af");
+    let anyVisible = false;
+
+    products.forEach(product => {
+      // find the title inside the card (h2)
+      const titleEl = product.querySelector("h2");
+      const title = titleEl ? titleEl.innerText.trim().toLowerCase() : "";
+
+      // if title missing, try alt text of image as fallback
+      if (!title && product.querySelector("img")) {
+        const alt = product.querySelector("img").alt || "";
+        if (alt) title = alt.trim().toLowerCase();
+      }
+
+      // decide visibility
+      const visible = q === "" || (title && title.includes(q));
+      product.style.display = visible ? "" : "none";
+      if (visible) anyVisible = true;
+    });
+
+    // optional: show a no-results message
+    let noResults = document.getElementById("noResultsMessage");
+    if (!noResults) {
+      noResults = document.createElement("div");
+      noResults.id = "noResultsMessage";
+      noResults.style.textAlign = "center";
+      noResults.style.color = "#666";
+      noResults.style.marginTop = "18px";
+      noResults.innerText = "No products match your search.";
+      const container = document.querySelector(".containor") || document.body;
+      container.parentNode.insertBefore(noResults, container.nextSibling);
+    }
+    noResults.style.display = anyVisible ? "none" : "block";
+  }, 180); // 180ms debounce
+};
