@@ -53,15 +53,15 @@ width: 100%;
 height: auto;
 }
 
-.ag {
-    width: 90%;
-    max-width: 1200px;
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 8px 8px 16px rgba(0,0,0,0.5);
-    margin: 20px;
-}
+.ag{
+width: 58%;
+max-width: 1200px;
+border-radius: 30px;
+overflow: hidden;
+box-shadow:8px 8px 16px 0px rgba(0, 0, 0, 0.5);
+margin: 20px;
 
+}
 
 .ag img{
 width: 100%;
@@ -232,7 +232,6 @@ margin-top: 10px;
 #cartCount {
     transition: transform 0.2s ease;
 }
-
 
 .product-body {
     display: flex;
