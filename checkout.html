@@ -1,18 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Checkout</title>
-<link rel="stylesheet" href="style.css">
-<script src="checkout.js" defer></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f5f7;
+            margin: 0;
+            padding: 24px;
+            color: #111;
+        }
+        .checkout-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .checkout-list {
+            background: #fff;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 12px 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item img {
+            width: 84px;
+            height: 84px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex: 0 0 84px;
+        }
+        .item-info {
+            flex: 1 1 auto;
+        }
+        .item-info h3 {
+            margin: 0 0 6px 0;
+            font-size: 16px;
+        }
+        .item-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            min-width: 140px;
+        }
+        .qty-input {
+            width: 64px;
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        .remove-btn {
+            background: transparent;
+            border: none;
+            color: #c33;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .summary {
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .total {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .checkout-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 12px;
+        }
+        .btn {
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background: #000;
+            color: #fff;
+        }
+        .btn-secondary {
+            background: #fff;
+            border: 1px solid #ddd;
+            color: #111;
+        }
+
+        @media (max-width: 600px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .cart-item img {
+                width: 100%;
+                height: 200px;
+                flex: none;
+            }
+            .item-controls {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
-
 <body>
-<h1>Checkout</h1>
+    <div class="checkout-container">
+        <h1>Checkout</h1>
 
-<div id="checkoutItems"></div>
+        <div id="checkoutItems" class="checkout-list">
+        </div>
 
-<h2 id="totalPrice"></h2>
+        <div class="summary">
+            <div id="emptyMessage" style="color:#666; display:none;">Your cart is empty.</div>
+            <div class="total" id="totalPrice">Total: $0.00</div>
+        </div>
 
-<button onclick="completeOrder()">Complete Order</button>
+        <div class="checkout-actions">
+            <button class="btn btn-secondary" id="continueShopping">Continue Shopping</button>
+            <button class="btn btn-primary" id="completeOrderBtn">Complete Order</button>
+        </div>
+    </div>
+
+    <script src="checkout.js" defer></script>
 </body>
 </html>
