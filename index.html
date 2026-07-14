@@ -1,143 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Football Top Shop</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<script src="script.js"></script>
-<body class="home">
-
-<div class="topbar">
-<input type="text" id="searchInput" placeholder="Search kits..." onkeyup="searchProducts()">
-
-<div class="cart-icon" onclick="toggleCart()">
-🛒 <span id="cartCount">0</span>
-</div>
-</div>
-
-<div id="cartPanel" class="cart-panel">
-<h2>Your Cart</h2>
-<div id="cartItems"></div>
-<button onclick="goToCheckout()">Checkout</button>
-</div>
-
-
-<div class="as">
-<div class="car">
-<img src="FootballTopShop.png"  
-width="40%" alt="Football Top Shop logo" class="logo">
-</div>
-
-<div class="pone">
-<h1 id="ad">Welcome To Football Top Shop</h1>
-<p>Welcome to The Football Kit Room, your ultimate destination for authentic football shirts,
-classic retro jerseys, and the latest club kits from leagues all around the world.
-We source high-quality, durable jerseys featuring official club crests and player printing
-so you can represent your team with pride. Whether you are searching for a rare vintage 
-gem or the newest season's drop, our curated collection ensures every fan finds their perfect match.</p>
-</p>
-</div>
-</div>
-
-<a class="productLink" href="product.html?name=Real%20Madrid&price=99&img=https://media.sportsdirect.com.au/cdn-cgi/image/fit=scale-down,f=auto,w=2400/https://res.cloudinary.com/accentgr/image/upload/Adidas%2FJN8887_1_APPAREL_PHOTOGRAPHY_FRONT%20CENTER%20VIEW_WHITE">
 <div class="containor">
-<div class="af">
-<img src="https://media.sportsdirect.com.au/cdn-cgi/image/fit=scale-down,f=auto,w=2400/https://res.cloudinary.com/accentgr/image/upload/Adidas%2FJN8887_1_APPAREL_PHOTOGRAPHY_FRONT%20CENTER%20VIEW_WHITE" alt="LMportrait">
-<div class="content">
-<h2>Real Madrid</h2>
-<h3>Now $99 Was $179</h3>
-<button class="addToCart" data-name="Real Madrid" data-price="99">Add to Cart</button>
-</div>
+
+    <!-- REAL MADRID -->
+    <div class="af">
+        <a class="productLink" href="product.html?name=Real%20Madrid&price=99&img=https://media.sportsdirect.com.au/cdn-cgi/image/fit=scale-down,f=auto,w=2400/https://res.cloudinary.com/accentgr/image/upload/Adidas%2FJN8887_1_APPAREL_PHOTOGRAPHY_FRONT%20CENTER%20VIEW_WHITE">
+            <img src="https://media.sportsdirect.com.au/cdn-cgi/image/fit=scale-down,f=auto,w=2400/https://res.cloudinary.com/accentgr/image/upload/Adidas%2FJN8887_1_APPAREL_PHOTOGRAPHY_FRONT%20CENTER%20VIEW_WHITE" alt="Real Madrid">
+            <h2>Real Madrid</h2>
+        </a>
+        <div class="content">
+            <h3>Now $99 Was $179</h3>
+            <button class="addToCart" data-name="Real Madrid" data-price="99">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- BARCELONA -->
+    <div class="af">
+        <a class="productLink" href="product.html?name=Barcelona&price=99&img=https://fortyfour-sneaker.com/cdn/shop/files/fc_barcelona_x_travis_scott_limited_edition_match_home_2024_25_jersey.png?v=1747392279">
+            <img src="https://fortyfour-sneaker.com/cdn/shop/files/fc_barcelona_x_travis_scott_limited_edition_match_home_2024_25_jersey.png?v=1747392279" alt="Barcelona">
+            <h2>Barcelona</h2>
+        </a>
+        <div class="content">
+            <h3>Now $99 Was $189</h3>
+            <button class="addToCart" data-name="Barcelona" data-price="99">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- BAYERN MUNICH -->
+    <div class="af">
+        <a class="productLink" href="product.html?name=Bayern%20Munich&price=99&img=https://europeansports.com/cdn/shop/files/KE6801_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1755187118">
+            <img src="https://europeansports.com/cdn/shop/files/KE6801_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1755187118" alt="Bayern Munich">
+            <h2>Bayern Munich</h2>
+        </a>
+        <div class="content">
+            <h3>Now $99 Was $175</h3>
+            <button class="addToCart" data-name="Bayern Munich" data-price="99">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- LIVERPOOL -->
+    <div class="af">
+        <a class="productLink" href="product.html?name=Liverpool&price=99&img=https://europeansports.com/cdn/shop/files/KB5790_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1780670270">
+            <img src="https://europeansports.com/cdn/shop/files/KB5790_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1780670270" alt="Liverpool">
+            <h2>Liverpool</h2>
+        </a>
+        <div class="content">
+            <h3>Now $99 Was $179</h3>
+            <button class="addToCart" data-name="Liverpool" data-price="99">Add to Cart</button>
+        </div>
+    </div>
+
 </div>
 
 
-<a class="productLink" href="product.html?name=Barcelona&price=99&img=https://fortyfour-sneaker.com/cdn/shop/files/fc_barcelona_x_travis_scott_limited_edition_match_home_2024_25_jersey.png?v=1747392279">
-<div class="af">
-<img src="https://fortyfour-sneaker.com/cdn/shop/files/fc_barcelona_x_travis_scott_limited_edition_match_home_2024_25_jersey.png?v=1747392279" alt="ZZportrait">
-<div class="content">
-<h2>Barcelona</h2>
-<h3>Now $99 Was $189</h3>
-<button class="addToCart" data-name="Barcelona" data-price="99">Add to Cart</button>
-</div>
-</div>
-
-
-<a class="productLink" href="product.html?name=Bayern%20Munich&price=99&img=https://europeansports.com/cdn/shop/files/KE6801_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1755187118">
-<div class="af">
-<img src="https://europeansports.com/cdn/shop/files/KE6801_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1755187118" alt="CRportrait">
-<div class="content">
-<h2>Bayern Munich</h2>
-<h3>Now $99 Was $175</h3>
-<button class="addToCart" data-name="Bayern Munich" data-price="99">Add to Cart</button>
-</div>
-</div>
-
-
-<a class="productLink" href="product.html?name=Liverpool&price=99&img=https://europeansports.com/cdn/shop/files/KB5790_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1780670270">
-<div class="af">
-<img src="https://europeansports.com/cdn/shop/files/KB5790_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1780670270" alt="EHportrait">
-<div class="content">
-<h2>liverpool</h2>
-<h3>Now $99 Was $179</h3>
-<button class="addToCart" data-name="liverpool" data-price="99">Add to Cart</button>
-</div>
-</div>
-</div>
-
-
-<a class="productLink" href="product.html?name=PSG&price=99&img=https://soccerpost.com/cdn/shop/files/AURORA_HM3206-045_PHSFH001-2000_clipped_rev_1.png?v=1764091943">
+<!-- SECOND ROW -->
 <div class="containor">
-<div class="af">
-<img src="https://soccerpost.com/cdn/shop/files/AURORA_HM3206-045_PHSFH001-2000_clipped_rev_1.png?v=1764091943" alt="LMportrait">
-<div class="content">
-<h2>PSG</h2>
-<h3>Now $99 Was $179</h3>
-<button class="addToCart" data-name="PSG" data-price="99">Add to Cart</button>
+
+    <!-- PSG -->
+    <div class="af">
+        <a class="productLink" href="product.html?name=PSG&price=99&img=https://soccerpost.com/cdn/shop/files/AURORA_HM3206-045_PHSFH001-2000_clipped_rev_1.png?v=1764091943">
+            <img src="https://soccerpost.com/cdn/shop/files/AURORA_HM3206-045_PHSFH001-2000_clipped_rev_1.png?v=1764091943" alt="PSG">
+            <h2>PSG</h2>
+        </a>
+        <div class="content">
+            <h3>Now $99 Was $179</h3>
+            <button class="addToCart" data-name="PSG" data-price="99">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- MANCHESTER UNITED -->
+    <div class="af">
+        <a class="productLink" href="product.html?name=Manchester%20United&price=99&img=https://europeansports.com/cdn/shop/files/JP3233_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1749591956">
+            <img src="https://europeansports.com/cdn/shop/files/JP3233_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1749591956" alt="Manchester United">
+            <h2>Manchester United</h2>
+        </a>
+        <div class="content">
+            <h3>Now $99 Was $189</h3>
+            <button class="addToCart" data-name="Manchester United" data-price="99">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- MANCHESTER CITY -->
+    <div class="af">
+        <a class="productLink" href="product.html?name=Manchester%20City&price=99&img=https://soccerpost.com/cdn/shop/files/Screenshot2025-10-15at10.25.24AM_clipped_rev_1.png?v=1760538706">
+            <img src="https://soccerpost.com/cdn/shop/files/Screenshot2025-10-15at10.25.24AM_clipped_rev_1.png?v=1760538706" alt="Manchester City">
+            <h2>Manchester City</h2>
+        </a>
+        <div class="content">
+            <h3>Now $99 Was $175</h3>
+            <button class="addToCart" data-name="Manchester City" data-price="99">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- CHELSEA -->
+    <div class="af">
+        <a class="productLink" href="product.html?name=Chelsea&price=99&img=chelsea.png">
+            <img src="chelsea.png" alt="Chelsea">
+            <h2>Chelsea</h2>
+        </a>
+        <div class="content">
+            <h3>Now $99 Was $179</h3>
+            <button class="addToCart" data-name="Chelsea" data-price="99">Add to Cart</button>
+        </div>
+    </div>
+
 </div>
-</div>
-
-
-<a class="productLink" href="product.html?name=Manchester%20United&price=99&img=https://europeansports.com/cdn/shop/files/JP3233_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1749591956&width=2400">
-<div class="af">
-<img src="https://europeansports.com/cdn/shop/files/JP3233_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1749591956&width=2400" alt="ZZportrait">
-<div class="content">
-<h2>Manchester United</h2>
-<h3>Now $99 Was $189</h3>
-<button class="addToCart" data-name="Manchester United" data-price="99">Add to Cart</button>
-</div>
-</div>
-
-
-
-<a class="productLink" href="product.html?name=Manchester%20City&price=99&img=https://soccerpost.com/cdn/shop/files/Screenshot2025-10-15at10.25.24AM_clipped_rev_1.png?v=1760538706">
-<div class="af">
-<img src="https://soccerpost.com/cdn/shop/files/Screenshot2025-10-15at10.25.24AM_clipped_rev_1.png?v=1760538706https://europeansports.com/cdn/shop/files/KE6801_1_APPAREL_Photography_FrontCenterView_transparent.png?v=1755187118" alt="CRportrait">
-<div class="content">
-<h2>Manchester City</h2>
-<h3>Now $99 Was $175</h3>
-<button class="addToCart" data-name="Manchester City" data-price="99">Add to Cart</button>
-</div>
-</div>
-
-<a class="productLink" href="product.html?name=Chelsea&price=99&img=https://soccerpost.com/cdn/shop/files/AURORA_HJ5285-496_PHSFH001-2000_clipped_rev_1.png?v=1747839505"></a>
-<div class="ag">
-<img src="chelsea.png" alt="EHportrait">
-<div class="content">
-<h2>Chelsea</h2>
-<h3>Now $99 Was $179</h3>
-<button class="addToCart" data-name="Chelsea" data-price="99">Add to Cart</button>
-
-</div>
-</div>
-</div>
-
-</body>
-</html>
-
-  
-
-
-
-
