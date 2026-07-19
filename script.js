@@ -1,4 +1,3 @@
-// script.js - replacement
 console.log("script.js loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     });
 
-    // Add receipt button at bottom
     cartItems.innerHTML += `
       <div style="margin-top:12px;display:flex;gap:8px;justify-content:space-between;align-items:center;">
         <div style="color:#666">Items: ${cart.reduce((s, it) => s + Number(it.qty), 0)}</div>
@@ -59,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
 
-  // Add item (merge by name+price)
   function addToCart(item) {
     item.qty = Number(item.qty) || 1;
     item.price = Number(item.price) || 0;
@@ -92,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => cartCount.classList.remove("pop"), 300);
   }
 
-  // Event delegation: Add to Cart buttons
   document.body.addEventListener("click", function (e) {
     const addBtn = e.target.closest && e.target.closest(".addToCart");
     if (!addBtn) return;
