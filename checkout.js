@@ -84,29 +84,25 @@ changeQty(idx, e.target.value);
 checkoutItemsEl.addEventListener("click", function (e) {
 if (e.target && e.target.classList.contains("remove-btn")) {
 const idx = Number(e.target.dataset.index);
-      removeItem(idx);
-    }
-  });
-
-  function completeOrder() {
-    if (!cart.length) {
-      alert("Your cart is empty.");
-      return;
-    }
-
-    // Build receipt content
-    let total = 0;
-    const lines = cart.map((it, i) => {
-      const lineTotal = Number(it.price) * Number(it.qty);
-      total += lineTotal;
-      return `${i + 1}. ${it.name} — $${Number(it.price).toFixed(2)} x ${it.qty} = $${lineTotal.toFixed(2)}`;
-    }).join("<br>");
-
-    const now = new Date().toLocaleString();
-    const receiptHtml = `
-      <html>
-      <head><title>Receipt</title>
-        <style>body{font-family:Arial;padding:20px}h2{margin-bottom:6px}.total{font-weight:700;margin-top:12px}</style>
+removeItem(idx);
+}
+});
+function completeOrder() {
+if (!cart.length) {
+alert("Your cart is empty.");
+return;
+}
+let total = 0;
+const lines = cart.map((it, i) => {
+const lineTotal = Number(it.price) * Number(it.qty);
+total += lineTotal;
+return `${i + 1}. ${it.name} — $${Number(it.price).toFixed(2)} x ${it.qty} = $${lineTotal.toFixed(2)}`;
+}).join("<br>");
+const now = new Date().toLocaleString();
+const receiptHtml = `
+<html>
+<head><title>Receipt</title>
+<style>body{font-family:Arial;padding:20px}h2{margin-bottom:6px}.total{font-weight:700;margin-top:12px}</style>
       </head>
       <body>
         <h2>Football Top Shop — Receipt</h2>
