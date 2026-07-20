@@ -75,17 +75,15 @@ cart[index].qty = newQty;
 saveCart();
 renderCart();
 }
-
-  checkoutItemsEl.addEventListener("input", function (e) {
-    if (e.target && e.target.classList.contains("qty-input")) {
-      const idx = Number(e.target.dataset.index);
-      changeQty(idx, e.target.value);
-    }
-  });
-
-  checkoutItemsEl.addEventListener("click", function (e) {
-    if (e.target && e.target.classList.contains("remove-btn")) {
-      const idx = Number(e.target.dataset.index);
+checkoutItemsEl.addEventListener("input", function (e) {
+if (e.target && e.target.classList.contains("qty-input")) {
+const idx = Number(e.target.dataset.index);
+changeQty(idx, e.target.value);
+}
+});
+checkoutItemsEl.addEventListener("click", function (e) {
+if (e.target && e.target.classList.contains("remove-btn")) {
+const idx = Number(e.target.dataset.index);
       removeItem(idx);
     }
   });
