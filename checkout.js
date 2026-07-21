@@ -2,19 +2,10 @@
 const totalPriceEl = document.getElementById("totalPrice");const emptyMessageEl = document.getElementById("emptyMessage");
 const completeOrderBtn = document.getElementById("completeOrderBtn");const continueShoppingBtn = document.getElementById("continueShopping");
 cart = cart.map(item => ({name: item.name || "Item",price: Number(item.price) || 0,
-qty: Number(item.qty) || 1,
-img: item.img || ""
-}));
-function renderCart() {
-checkoutItemsEl.innerHTML = "";
-if (!cart.length) {
-emptyMessageEl.style.display = "block";
-totalPriceEl.innerText = "Total: $0.00";
-updateCartCount();
-return;
-} else {
-emptyMessageEl.style.display = "none";
-}
+qty: Number(item.qty) || 1,img: item.img || ""}));function renderCart() {
+checkoutItemsEl.innerHTML = "";if (!cart.length) {emptyMessageEl.style.display = "block";
+totalPriceEl.innerText = "Total: $0.00";updateCartCount();return;} else {
+emptyMessageEl.style.display = "none";}
 cart.forEach((item, index) => {
 const itemEl = document.createElement("div");
 itemEl.className = "cart-item";
