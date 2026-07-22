@@ -1,103 +1,132 @@
 console.log("script.js loaded");
+
 document.addEventListener("DOMContentLoaded", () => {
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-const cartCount = document.getElementById("cartCount");
-const cartItems = document.getElementById("cartItems");
-const cartPanel = document.getElementById("cartPanel");
+
+const cartCount = document.getElementById("cartCount"),
+      cartItems = document.getElementById("cartItems"),
+      cartPanel = document.getElementById("cartPanel");
+
+const saveCart = () => localStorage.setItem("cart", JSON.stringify(cart));
+
+const escapeHtml = str => String(str || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
 function renderCartUI() {
-const totalItems = cart.reduce((s, it) => s + (Number(it.qty) || 0), 0);
-if (cartCount) cartCount.innerText = totalItems;
-if (!cartItems) return;
-cartItems.innerHTML = "";
-if (!cart.length) {
-cartItems.innerHTML = `<p style="color:#666">Cart is empty</p>`;
-return;
+  if (cartCount)
+    cartCount.innerText = cart.reduce((s,i)=>s+(+i.qty||0),0);
+
+  if (!cartItems) return;
+
+  if (!cart.length) {
+    cartItems.innerHTML = `<p style="color:#666">Cart is empty</p>`;
+    return;
+  }
+
+  cartItems.innerHTML = cart.map((item,idx)=>`
+    <div class="cart-item" data-index="${idx}">
+      <div style="display:flex;gap:8px;align-items:center;">
+        ${item.img?`<img src="${escapeHtml(item.img)}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;">`:""}
+        <div>
+          <p style="margin:0;font-weight:600;">${escapeHtml(item.name)}</p>
+          <p style="margin:0;color:#666;">$${(+item.price).toFixed(2)} x ${item.qty}</p>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+        <input class="cart-qty-input" data-index="${idx}" type="number" min="1"
+        value="${item.qty}" style="width:56px;padding:6px;border-radius:6px;border:1px solid #ddd;">
+        <button class="remove-from-cart" data-index="${idx}"
+        style="background:transparent;border:none;color:#c33;cursor:pointer;">
+        Remove</button>
+      </div>
+    </div>
+  `).join("") + `
+  <div style="margin-top:12px;display:flex;gap:8px;justify-content:space-between;align-items:center;">
+    <div style="color:#666">Items: ${cart.reduce((s,i)=>s+ +i.qty,0)}</div>
+    <button id="generateReceiptBtn"
+    style="padding:8px 12px;border-radius:8px;border:none;background:#000;color:#fff;cursor:pointer;">
+    Generate Receipt</button>
+  </div>`;
 }
-cart.forEach((item, idx) => {
-cartItems.innerHTML += `
-<div class="cart-item" data-index="${idx}">
-<div style="display:flex;gap:8px;align-items:center;">
-${item.img ? `<img src="${escapeHtml(item.img)}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;">` : ""}
-<div>
-<p style="margin:0;font-weight:600;">${escapeHtml(item.name)}</p>
-<p style="margin:0;color:#666;">$${Number(item.price).toFixed(2)} x ${item.qty}</p>
-</div>
-</div>
-<div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-<input class="cart-qty-input" data-index="${idx}" type="number" min="1" value="${item.qty}" style="width:56px;padding:6px;border-radius:6px;border:1px solid #ddd;">
-<button class="remove-from-cart" data-index="${idx}" style="background:transparent;border:none;color:#c33;cursor:pointer;">Remove</button>
-</div>
-</div>`;});
-cartItems.innerHTML += `
-<div style="margin-top:12px;display:flex;gap:8px;justify-content:space-between;align-items:center;">
-<div style="color:#666">Items: ${cart.reduce((s, it) => s + Number(it.qty), 0)}</div>
-<div>
-<button id="generateReceiptBtn" style="padding:8px 12px;border-radius:8px;border:none;background:#000;color:#fff;cursor:pointer;">Generate Receipt</button>
-</div>
-</div>`;  }
-function saveCart() {
-localStorage.setItem("cart", JSON.stringify(cart));}
-function escapeHtml(str) {
-if (!str) return "";
-return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");}
-function addToCart(item) {
-item.qty = Number(item.qty) || 1;
-item.price = Number(item.price) || 0;
-const existing = cart.find(c => c.name === item.name && Number(c.price) === Number(item.price));
-if (existing) existing.qty = Number(existing.qty || 0) + item.qty;
-else cart.push(item);
-saveCart();
-renderCartUI();
-animateCartCount();}
-function removeFromCart(index) {
-cart.splice(index, 1);
-saveCart();
-renderCartUI();}
-function changeQty(index, qty) {
-qty = Number(qty) || 1;
-if (cart[index]) {
-cart[index].qty = qty;
-saveCart();
-renderCartUI();}}
-function animateCartCount() {
-if (!cartCount) return;
-cartCount.classList.add("pop");
-setTimeout(() => cartCount.classList.remove("pop"), 300);}
-document.body.addEventListener("click", function (e) {
-const addBtn = e.target.closest && e.target.closest(".addToCart");
-if (!addBtn) return;
-e.preventDefault();
-e.stopPropagation();
-const name = addBtn.dataset.name || (addBtn.closest(".af") && addBtn.closest(".af").querySelector("h2")?.innerText) || "Item";
-const price = Number(addBtn.dataset.price || 0);
-const img = addBtn.dataset.img || (addBtn.closest(".af") && addBtn.closest(".af").querySelector("img")?.src) || "";
-addToCart({ name: name.trim(), price, img, qty: 1 });
+
+function addToCart(item){
+  item.qty=+item.qty||1;
+  item.price=+item.price||0;
+
+  const existing=cart.find(c=>c.name===item.name && +c.price===item.price);
+
+  existing ? existing.qty+=item.qty : cart.push(item);
+
+  saveCart();
+  renderCartUI();
+  animateCartCount();
+}
+
+const removeFromCart=i=>{
+  cart.splice(i,1);
+  saveCart();
+  renderCartUI();
+};
+
+function changeQty(i,qty){
+  if(!cart[i]) return;
+  cart[i].qty=+qty||1;
+  saveCart();
+  renderCartUI();
+}
+
+function animateCartCount(){
+  if(!cartCount) return;
+  cartCount.classList.add("pop");
+  setTimeout(()=>cartCount.classList.remove("pop"),300);
+}
+
+document.body.addEventListener("click",e=>{
+  const addBtn=e.target.closest(".addToCart");
+
+  if(addBtn){
+    e.preventDefault();
+    e.stopPropagation();
+
+    const card=addBtn.closest(".af");
+
+    addToCart({
+      name:(addBtn.dataset.name||card?.querySelector("h2")?.innerText||"Item").trim(),
+      price:+addBtn.dataset.price||0,
+      img:addBtn.dataset.img||card?.querySelector("img")?.src||"",
+      qty:1
+    });
+
+    return;
+  }
+
+  const rem=e.target.closest(".remove-from-cart");
+  if(rem) return removeFromCart(+rem.dataset.index);
+
+  if(e.target.closest("#generateReceiptBtn"))
+    generateReceipt();
 });
-document.body.addEventListener("click", function (e) {
-const rem = e.target.closest && e.target.closest(".remove-from-cart");
-if (rem) {
-const idx = Number(rem.dataset.index);
-removeFromCart(idx);
-return;}
-const receiptBtn = e.target.closest && e.target.closest("#generateReceiptBtn");
-if (receiptBtn) {
-generateReceipt();
-return;}});
-cartItems && cartItems.addEventListener("input", function (e) {
-const input = e.target.closest && e.target.closest(".cart-qty-input");
-if (!input) return;
-const idx = Number(input.dataset.index);
-changeQty(idx, input.value);});
-window.toggleCart = function () {
-if (!cartPanel) return;
-cartPanel.classList.toggle("open");};
-window.goToCheckout = function () {
-window.location.href = "checkout.html";};
-function generateReceipt() {
-if (!cart.length) {
-alert("Cart is empty.");
-return;}
-let total = 0;
+
+cartItems?.addEventListener("input",e=>{
+  const input=e.target.closest(".cart-qty-input");
+  if(input) changeQty(+input.dataset.index,input.value);
+});
+
+window.toggleCart=()=>cartPanel?.classList.toggle("open");
+window.goToCheckout=()=>location.href="checkout.html";
+
+function generateReceipt(){
+  if(!cart.length){
+    alert("Cart is empty.");
+    return;
+  }
+
+  let total=0;
 const lines = cart.map((it, i) => {
 const lineTotal = Number(it.price) * Number(it.qty);
 total += lineTotal;
