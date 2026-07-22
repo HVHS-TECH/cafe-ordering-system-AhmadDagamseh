@@ -135,8 +135,9 @@ alert(`Payment successful! Your change is $${change.toFixed(2)}`);
   <h2>Football Top Shop — Receipt</h2>
   <div>Date: ${new Date().toLocaleString()}</div><hr>
   <div>${lines}</div>
-  <div class="total">Total: $${total.toFixed(2)}</div><hr>
-  <div>Thank you for your purchase!</div>
+  <div class="total">Total: $${total.toFixed(2)}</div>
+<div>Change: $${change.toFixed(2)}</div><hr>
+<div>Thank you for your purchase!</div>
   </body></html>`);
   w.document.close();
 
