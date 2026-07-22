@@ -127,85 +127,98 @@ function generateReceipt(){
   }
 
   let total=0;
-const lines = cart.map((it, i) => {
-const lineTotal = Number(it.price) * Number(it.qty);
-total += lineTotal;
-return `${i + 1}. ${it.name} — $${Number(it.price).toFixed(2)} x ${it.qty} = $${lineTotal.toFixed(2)}`;
+const lines = cart.map((it,i)=>{
+  const lineTotal=+it.price*+it.qty;
+  total+=lineTotal;
+  return `${i+1}. ${it.name} — $${(+it.price).toFixed(2)} x ${it.qty} = $${lineTotal.toFixed(2)}`;
 }).join("<br>");
-const now = new Date().toLocaleString();
-const receiptHtml = `
+
+const w=window.open("","_blank");
+
+if(!w){
+  alert("Popup blocked. Please allow popups to view the receipt.");
+  return;
+}
+
+w.document.write(`
 <html>
 <head>
 <title>Receipt</title>
 <style>
-body { font-family: Arial, sans-serif; padding:20px; color:#111; }
-h2 { margin-bottom:6px; }
-.line { margin:6px 0; }
-.total { font-weight:700; margin-top:12px; }
+body{font-family:Arial,sans-serif;padding:20px;color:#111}
+h2{margin-bottom:6px}
+.total{font-weight:700;margin-top:12px}
 </style>
 </head>
 <body>
 <h2>Football Top Shop — Receipt</h2>
-<div>Date: ${now}</div>
+<div>Date: ${new Date().toLocaleString()}</div>
 <hr>
 <div>${lines}</div>
 <div class="total">Total: $${total.toFixed(2)}</div>
 <hr>
 <div>Thank you for your purchase!</div>
 </body>
-</html>`;
-const w = window.open("", "_blank");
-if (!w) {
-alert("Popup blocked. Please allow popups to view the receipt.");
-return;}
-w.document.write(receiptHtml);
-w.document.close();
-const confirmed = confirm("Order complete? This will clear the cart.");
-if (confirmed) {
-cart = [];
-saveCart();
-renderCartUI();
-animateCartCount();}}
-renderCartUI();
-window._cart = { get: () => cart, add: addToCart, remove: removeFromCart };
-});
-let _searchTimeout = null;
-window.searchProducts = function () {
-clearTimeout(_searchTimeout);
-_searchTimeout = setTimeout(() => {
-const input = document.getElementById("searchInput");
-if (!input) return;
-const q = input.value.trim().toLowerCase();
-const products = document.querySelectorAll(".af");
-let anyVisible = false;
-products.forEach(product => {
-const titleEl = product.querySelector("h2");
-const title = titleEl ? titleEl.innerText.trim().toLowerCase() : "";
+</html>`);
 
-      // if title missing, try alt text of image as fallback
-      if (!title && product.querySelector("img")) {
-        const alt = product.querySelector("img").alt || "";
-        if (alt) title = alt.trim().toLowerCase();
+w.document.close();
+
+if(confirm("Order complete? This will clear the cart.")){
+  cart=[];
+  saveCart();
+  renderCartUI();
+  animateCartCount();
+}
+}
+
+renderCartUI();
+
+window._cart={
+  get:()=>cart,
+  add:addToCart,
+  remove:removeFromCart
+};
+
+});
+
+let _searchTimeout;
+
+window.searchProducts=()=>{
+  clearTimeout(_searchTimeout);
+
+  _searchTimeout=setTimeout(()=>{
+    const input=document.getElementById("searchInput");
+    if(!input) return;
+
+    const q=input.value.trim().toLowerCase();
+    const products=document.querySelectorAll(".af");
+    let anyVisible=false;
+
+    products.forEach(product=>{
+      let title=product.querySelector("h2")?.innerText.trim().toLowerCase()||"";
+
+      if(!title){
+        title=product.querySelector("img")?.alt.trim().toLowerCase()||"";
       }
 
-      // decide visibility
-      const visible = q === "" || (title && title.includes(q));
-      product.style.display = visible ? "" : "none";
-      if (visible) anyVisible = true;
+      const visible=!q||title.includes(q);
+
+      product.style.display=visible?"":"none";
+      if(visible) anyVisible=true;
     });
 
-    // optional: show a no-results message
-    let noResults = document.getElementById("noResultsMessage");
-    if (!noResults) {
-      noResults = document.createElement("div");
-      noResults.id = "noResultsMessage";
-      noResults.style.textAlign = "center";
-      noResults.style.color = "#666";
-      noResults.style.marginTop = "18px";
-      noResults.innerText = "No products match your search.";
-      const container = document.querySelector(".containor") || document.body;
-      container.parentNode.insertBefore(noResults, container.nextSibling);
+    let noResults=document.getElementById("noResultsMessage");
+
+    if(!noResults){
+      noResults=document.createElement("div");
+      noResults.id="noResultsMessage";
+      noResults.style.cssText="text-align:center;color:#666;margin-top:18px";
+      noResults.innerText="No products match your search.";
+
+      const container=document.querySelector(".containor")||document.body;
+      container.parentNode.insertBefore(noResults,container.nextSibling);
     }
-    noResults.style.display = anyVisible ? "none" : "block";
-  }, 180); // 180ms debounce
+
+    noResults.style.display=anyVisible?"none":"block";
+  },180);
 };
