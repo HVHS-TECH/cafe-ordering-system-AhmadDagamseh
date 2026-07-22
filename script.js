@@ -3,7 +3,7 @@ console.log("script.js loaded");
 document.addEventListener("DOMContentLoaded",()=>{
 let cart=JSON.parse(localStorage.getItem("cart"))||[];
 
-const total cartCount=document.getElementById("cartCount"),
+const  cartCount=document.getElementById("cartCount"),
       cartItems=document.getElementById("cartItems"),
       cartPanel=document.getElementById("cartPanel");
 
