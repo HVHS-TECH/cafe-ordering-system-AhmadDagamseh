@@ -10,7 +10,7 @@ const $ = id => document.getElementById(id),
 checkoutItemsEl = $("checkoutItems"),
 totalPriceEl = $("totalPrice"),
 emptyMessageEl = $("emptyMessage"),
-generateReceiptBtn.addEventListener("click", completeOrder);
+
 continueShoppingBtn = $("continueShopping");
 
 const saveCart = () => localStorage.setItem("cart", JSON.stringify(cart));
@@ -117,7 +117,6 @@ if(money < orderTotal){
 
 const change = money - orderTotal;
 alert(`Payment successful! Your change is $${change.toFixed(2)}`);
-
   let total=0;
   const lines=cart.map((i,n)=>{
     const t=i.price*i.qty;
