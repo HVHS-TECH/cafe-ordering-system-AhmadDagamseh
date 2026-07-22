@@ -6,7 +6,6 @@ let cart = (JSON.parse(localStorage.getItem("cart")) || []).map(i => ({
   qty: +i.qty || 1,
   img: i.img || ""
 }));
-
 const $ = id => document.getElementById(id),
 checkoutItemsEl = $("checkoutItems"),
 totalPriceEl = $("totalPrice"),
