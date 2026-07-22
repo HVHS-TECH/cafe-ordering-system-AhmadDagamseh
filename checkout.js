@@ -10,7 +10,7 @@ const $ = id => document.getElementById(id),
 checkoutItemsEl = $("checkoutItems"),
 totalPriceEl = $("totalPrice"),
 emptyMessageEl = $("emptyMessage"),
-completeOrderBtn = $("completeOrderBtn"),
+generateReceiptBtn.addEventListener("click", completeOrder);
 continueShoppingBtn = $("continueShopping");
 
 const saveCart = () => localStorage.setItem("cart", JSON.stringify(cart));
