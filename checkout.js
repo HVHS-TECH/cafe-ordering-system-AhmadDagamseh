@@ -114,6 +114,10 @@ if(money < orderTotal){
   alert(`You don't have enough money. You need $${(orderTotal-money).toFixed(2)} more.`);
   return;
 }
+
+const change = money - orderTotal;
+alert(`Payment successful! Your change is $${change.toFixed(2)}`);
+
   let total=0;
   const lines=cart.map((i,n)=>{
     const t=i.price*i.qty;
