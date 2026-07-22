@@ -41,8 +41,9 @@ ${i.img?`<img src="${escapeHtml(i.img)}" style="width:48px;height:48px;object-fi
 </div>`).join("")+`
 <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;">
 <div style="color:#666">Items: ${cart.reduce((t,i)=>t+ +i.qty,0)}</div>
-<button id="generateReceiptBtn" style="padding:8px 12px;border:none;border-radius:8px;background:#000;color:#fff;cursor:pointer;">Generate Receipt</button>
-</div>`;
+<div style="margin-top:12px;color:#666">
+Items: ${cart.reduce((t,i)=>t+ +i.qty,0)}
+</div>
 }
 
 function addToCart(item){
@@ -98,7 +99,6 @@ document.body.addEventListener("click",e=>{
   const rem=e.target.closest(".remove-from-cart");
   if(rem)return removeFromCart(+rem.dataset.index);
 
-  if(e.target.closest("#generateReceiptBtn"))generateReceipt();
 });
 
 cartItems?.addEventListener("input",e=>{
