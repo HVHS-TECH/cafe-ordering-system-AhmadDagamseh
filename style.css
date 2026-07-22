@@ -441,6 +441,7 @@ margin-top: 10px;
         width: 100%;
     }
 
+ {
     .cart-panel {
         right: 0;
         left: 0;
@@ -450,6 +451,8 @@ margin-top: 10px;
         width: 100%;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
+        transform: translateY(100%);
+        transition: 0.4s;
     }
 
     .cart-panel.open {
