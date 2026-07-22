@@ -48,135 +48,95 @@ if (existing) existing.qty = Number(existing.qty || 0) + item.qty;
 else cart.push(item);
 saveCart();
 renderCartUI();
-animateCartCount();
-}
-
-  function removeFromCart(index) {
-    cart.splice(index, 1);
-    saveCart();
-    renderCartUI();
-  }
-
-  function changeQty(index, qty) {
-    qty = Number(qty) || 1;
-    if (cart[index]) {
-      cart[index].qty = qty;
-      saveCart();
-      renderCartUI();
-    }
-  }
-
-  function animateCartCount() {
-    if (!cartCount) return;
-    cartCount.classList.add("pop");
-    setTimeout(() => cartCount.classList.remove("pop"), 300);
-  }
-
-  document.body.addEventListener("click", function (e) {
-    const addBtn = e.target.closest && e.target.closest(".addToCart");
-    if (!addBtn) return;
-
-    // Prevent navigation if inside <a>
-    e.preventDefault();
-    e.stopPropagation();
-
-    const name = addBtn.dataset.name || (addBtn.closest(".af") && addBtn.closest(".af").querySelector("h2")?.innerText) || "Item";
-    const price = Number(addBtn.dataset.price || 0);
-    const img = addBtn.dataset.img || (addBtn.closest(".af") && addBtn.closest(".af").querySelector("img")?.src) || "";
-
-    addToCart({ name: name.trim(), price, img, qty: 1 });
-  });
-
-  // Event delegation: cart panel remove and qty change and receipt
-  document.body.addEventListener("click", function (e) {
-    const rem = e.target.closest && e.target.closest(".remove-from-cart");
-    if (rem) {
-      const idx = Number(rem.dataset.index);
-      removeFromCart(idx);
-      return;
-    }
-
-    const receiptBtn = e.target.closest && e.target.closest("#generateReceiptBtn");
-    if (receiptBtn) {
-      generateReceipt();
-      return;
-    }
-  });
-
-  cartItems && cartItems.addEventListener("input", function (e) {
-    const input = e.target.closest && e.target.closest(".cart-qty-input");
-    if (!input) return;
-    const idx = Number(input.dataset.index);
-    changeQty(idx, input.value);
-  });
-
-  // Toggle cart panel
-  window.toggleCart = function () {
-    if (!cartPanel) return;
-    cartPanel.classList.toggle("open");
-  };
-
-  window.goToCheckout = function () {
-    window.location.href = "checkout.html";
-  };
-
-  // Receipt generator: opens printable receipt and clears cart on confirm
-  function generateReceipt() {
-    if (!cart.length) {
-      alert("Cart is empty.");
-      return;
-    }
-
-    let total = 0;
-    const lines = cart.map((it, i) => {
-      const lineTotal = Number(it.price) * Number(it.qty);
-      total += lineTotal;
-      return `${i + 1}. ${it.name} — $${Number(it.price).toFixed(2)} x ${it.qty} = $${lineTotal.toFixed(2)}`;
-    }).join("<br>");
-
-    const now = new Date().toLocaleString();
-    const receiptHtml = `
-      <html>
-      <head>
-        <title>Receipt</title>
-        <style>
-          body { font-family: Arial, sans-serif; padding:20px; color:#111; }
-          h2 { margin-bottom:6px; }
-          .line { margin:6px 0; }
-          .total { font-weight:700; margin-top:12px; }
-        </style>
-      </head>
-      <body>
-        <h2>Football Top Shop — Receipt</h2>
-        <div>Date: ${now}</div>
-        <hr>
-        <div>${lines}</div>
-        <div class="total">Total: $${total.toFixed(2)}</div>
-        <hr>
-        <div>Thank you for your purchase!</div>
-      </body>
-      </html>
-    `;
-
-    const w = window.open("", "_blank");
-    if (!w) {
-      alert("Popup blocked. Please allow popups to view the receipt.");
-      return;
-    }
-    w.document.write(receiptHtml);
-    w.document.close();
-
-    // Ask user to confirm clearing cart
-    const confirmed = confirm("Order complete? This will clear the cart.");
-    if (confirmed) {
-      cart = [];
-      saveCart();
-      renderCartUI();
-      animateCartCount();
-    }
-  }
-
-  // Initialize
+animateCartCount();}
+function removeFromCart(index) {
+cart.splice(index, 1);
+saveCart();
+renderCartUI();}
+function changeQty(index, qty) {
+qty = Number(qty) || 1;
+if (cart[index]) {
+cart[index].qty = qty;
+saveCart();
+renderCartUI();}}
+function animateCartCount() {
+if (!cartCount) return;
+cartCount.classList.add("pop");
+setTimeout(() => cartCount.classList.remove("pop"), 300);}
+document.body.addEventListener("click", function (e) {
+const addBtn = e.target.closest && e.target.closest(".addToCart");
+if (!addBtn) return;
+e.preventDefault();
+e.stopPropagation();
+const name = addBtn.dataset.name || (addBtn.closest(".af") && addBtn.closest(".af").querySelector("h2")?.innerText) || "Item";
+const price = Number(addBtn.dataset.price || 0);
+const img = addBtn.dataset.img || (addBtn.closest(".af") && addBtn.closest(".af").querySelector("img")?.src) || "";
+addToCart({ name: name.trim(), price, img, qty: 1 });
+});
+document.body.addEventListener("click", function (e) {
+const rem = e.target.closest && e.target.closest(".remove-from-cart");
+if (rem) {
+const idx = Number(rem.dataset.index);
+removeFromCart(idx);
+return;}
+const receiptBtn = e.target.closest && e.target.closest("#generateReceiptBtn");
+if (receiptBtn) {
+generateReceipt();
+return;}});
+cartItems && cartItems.addEventListener("input", function (e) {
+const input = e.target.closest && e.target.closest(".cart-qty-input");
+if (!input) return;
+const idx = Number(input.dataset.index);
+changeQty(idx, input.value);});
+window.toggleCart = function () {
+if (!cartPanel) return;
+cartPanel.classList.toggle("open");};
+window.goToCheckout = function () {
+window.location.href = "checkout.html";};
+function generateReceipt() {
+if (!cart.length) {
+alert("Cart is empty.");
+return;}
+let total = 0;
+const lines = cart.map((it, i) => {
+const lineTotal = Number(it.price) * Number(it.qty);
+total += lineTotal;
+return `${i + 1}. ${it.name} — $${Number(it.price).toFixed(2)} x ${it.qty} = $${lineTotal.toFixed(2)}`;
+}).join("<br>");
+const now = new Date().toLocaleString();
+const receiptHtml = `
+<html>
+<head>
+<title>Receipt</title>
+<style>
+body { font-family: Arial, sans-serif; padding:20px; color:#111; }
+h2 { margin-bottom:6px; }
+.line { margin:6px 0; }
+.total { font-weight:700; margin-top:12px; }
+</style>
+</head>
+<body>
+<h2>Football Top Shop — Receipt</h2>
+<div>Date: ${now}</div>
+<hr>
+<div>${lines}</div>
+<div class="total">Total: $${total.toFixed(2)}</div>
+<hr>
+<div>Thank you for your purchase!</div>
+</body>
+</html>`;
+const w = window.open("", "_blank");
+if (!w) {
+alert("Popup blocked. Please allow popups to view the receipt.");
+return;}
+w.document.write(receiptHtml);
+w.document.close();
+const confirmed = confirm("Order complete? This will clear the cart.");
+if (confirmed) {
+cart = [];
+saveCart();
+renderCartUI();
+animateCartCount();}}
   renderCartUI();
 
   // Expose for debugging
