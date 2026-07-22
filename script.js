@@ -185,6 +185,12 @@ window.searchProducts=()=>{
     msg.style.display=any?"none":"block";
   },180);
 };
-window.addEventListener("load",()=>{
-document.getElementById("loader").style.display="none";
+window.addEventListener("load", () => {
+const loader = document.getElementById("loader");
+if (loader) {
+loader.style.opacity = "0";
+setTimeout(() => {
+loader.style.display = "none";
+}, 300);
+}
 });
