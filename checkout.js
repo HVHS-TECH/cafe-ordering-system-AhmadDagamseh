@@ -94,8 +94,9 @@ const name = prompt("Enter your name:");
 const money = Number(prompt("How much money do you have?"));
 const age = Number(prompt("Enter your age:"));
 
-const orderTotal = cart.reduce((total,item)=>total + item.price * item.qty,0);
+let orderTotal = cart.reduce((total,item)=>total + item.price * item.qty,0);
 
+orderTotal = orderTotal - (orderTotal * discount);
 if(!name){
   alert("Please enter your name.");
   return;
@@ -151,6 +152,19 @@ alert(`Payment successful! Your change is $${change.toFixed(2)}`);
 }
 
 continueShoppingBtn.onclick=()=>location.href="index.html";
+document.getElementById("applyDiscountBtn").onclick=()=>{
+
+const code=document.getElementById("discountCode").value;
+
+if(code==="FOOTBALL10"){
+  discount=0.10;
+  document.getElementById("discountMessage").innerText="10% discount applied!";
+}else{
+  discount=0;
+  document.getElementById("discountMessage").innerText="Invalid code.";
+}
+
+};
 completeOrderBtn.onclick=completeOrder;
 
 renderCart();
