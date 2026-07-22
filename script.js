@@ -34,16 +34,16 @@ ${i.img?`<img src="${escapeHtml(i.img)}" style="width:48px;height:48px;object-fi
 <p style="margin:0;color:#666;">$${(+i.price).toFixed(2)} x ${i.qty}</p>
 </div>
 </div>
+
 <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-<input class="cart-qty-input" data-index="${x}" type="number" min="1" value="${i.qty}" style="width:56px;padding:6px;border-radius:6px;border:1px solid #ddd;">
-<button class="remove-from-cart" data-index="${x}" style="background:transparent;border:none;color:#c33;cursor:pointer;">Remove</button>
+<input class="cart-qty-input" data-index="${x}" type="number" min="1" value="${i.qty}">
+<button class="remove-from-cart" data-index="${x}">Remove</button>
 </div>
 </div>`).join("")+`
-<div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;">
-<div style="color:#666">Items: ${cart.reduce((t,i)=>t+ +i.qty,0)}</div>
+
 <div style="margin-top:12px;color:#666">
 Items: ${cart.reduce((t,i)=>t+ +i.qty,0)}
-</div>
+</div>`;
 }
 
 function addToCart(item){
