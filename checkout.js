@@ -130,16 +130,52 @@ alert(`Payment successful! Your change is $${change.toFixed(2)}`);
   if(!w) return alert("Popup blocked. Please allow popups to view the receipt.");
 
   w.document.write(`
-  <html><head><title>Receipt</title>
-  <style>body{font-family:Arial;padding:20px}.total{font-weight:700;margin-top:12px}</style>
-  </head><body>
-  <h2>Football Top Shop — Receipt</h2>
-  <div>Date: ${new Date().toLocaleString()}</div><hr>
-  <div>${lines}</div>
-  <div class="total">Total: $${total.toFixed(2)}</div>
-<div>Change: $${change.toFixed(2)}</div><hr>
-<div>Thank you for your purchase!</div>
-  </body></html>`);
+<html>
+<head>
+<title>Receipt</title>
+<style>
+body{
+font-family:Arial;
+padding:20px;
+color:#111;
+}
+.total{
+font-weight:700;
+margin-top:12px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Football Top Shop — Receipt</h2>
+
+<p>Date: ${new Date().toLocaleString()}</p>
+
+<hr>
+
+<h3>Customer: ${name}</h3>
+
+<hr>
+
+<h3>Items Bought:</h3>
+<div>${lines}</div>
+
+<hr>
+
+<p class="total">Total Cost: $${total.toFixed(2)}</p>
+
+<p>Money Given: $${money.toFixed(2)}</p>
+
+<p>Change: $${change.toFixed(2)}</p>
+
+<hr>
+
+<p>Thank you for your purchase!</p>
+
+</body>
+</html>
+`);
   w.document.close();
 
   if(!confirm("Complete order and clear cart?")) return;
