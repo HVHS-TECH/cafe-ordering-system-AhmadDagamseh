@@ -110,7 +110,7 @@ window.toggleCart=()=>cartPanel?.classList.toggle("open");
 window.goToCheckout=()=>location.href="checkout.html";
 
 function generateReceipt(){
-  if(!cart.length){
+  if(!cart. ){
     alert("Cart is empty.");
     return;
   }
