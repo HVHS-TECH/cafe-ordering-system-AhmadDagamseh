@@ -185,3 +185,6 @@ window.searchProducts=()=>{
     msg.style.display=any?"none":"block";
   },180);
 };
+window.addEventListener("load",()=>{
+document.getElementById("loader").style.display="none";
+});
