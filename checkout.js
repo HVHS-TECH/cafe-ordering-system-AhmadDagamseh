@@ -90,7 +90,31 @@ checkoutItemsEl.addEventListener("click",e=>{
 
 function completeOrder(){
   if(!cart.length) return alert("Your cart is empty.");
+const name = prompt("Enter your name:");
+const money = Number(prompt("How much money do you have?"));
+const age = Number(prompt("Enter your age:"));
 
+const orderTotal = cart.reduce((total,item)=>total + item.price * item.qty,0);
+
+if(!name){
+  alert("Please enter your name.");
+  return;
+}
+
+if(age < 12){
+  alert("You are too young to buy this.");
+  return;
+}
+
+if(age > 100){
+  alert("You cannot buy this because your age is over 100.");
+  return;
+}
+
+if(money < orderTotal){
+  alert(`You don't have enough money. You need $${(orderTotal-money).toFixed(2)} more.`);
+  return;
+}
   let total=0;
   const lines=cart.map((i,n)=>{
     const t=i.price*i.qty;
