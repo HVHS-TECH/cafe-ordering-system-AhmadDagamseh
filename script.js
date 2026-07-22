@@ -164,7 +164,7 @@ window.searchProducts=()=>{
 
     document.querySelectorAll(".af").forEach(p=>{
       let title=p.querySelector("h2")?.innerText.trim().toLowerCase()||
-                p.querySelector("img")?.alt.trim().toLowerCase()||"";
+                p.querySelector("img")?.alt?.trim().toLowerCase()||"";
 
       const show=!q||title.includes(q);
       p.style.display=show?"":"none";
