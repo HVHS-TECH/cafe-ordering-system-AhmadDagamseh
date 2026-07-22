@@ -114,6 +114,34 @@ function generateReceipt(){
     alert("Cart is empty.");
     return;
   }
+function completeOrder(){
+if(!cart.length) return alert("Your cart is empty.");
+
+const name = prompt("Enter your name:");
+const money = Number(prompt("How much money do you have?"));
+const age = Number(prompt("Enter your age:"));
+
+const total = cart.reduce((t,i)=>t+i.price*i.qty,0);
+
+if(!name){
+  alert("Please enter your name.");
+  return;
+}
+
+if(age > 100){
+  alert("You cannot purchase because your age is over 100.");
+  return;
+}
+
+if(age < 12){
+  alert("You are too young to buy this item.");
+  return;
+}
+
+if(money < total){
+  alert(`You do not have enough money. You need $${(total-money).toFixed(2)} more.`);
+  return;
+}
 
   let total=0;
 const lines=cart.map((it,i)=>{
