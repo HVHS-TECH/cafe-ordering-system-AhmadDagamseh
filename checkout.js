@@ -182,6 +182,24 @@ margin-top:12px;
 
   cart=[];
   saveCart();
+  const resetOrderBtn = document.getElementById("resetOrderBtn");
+
+if(resetOrderBtn){
+  resetOrderBtn.onclick = () => {
+
+    if(confirm("Are you sure you want to clear your order?")){
+
+      cart = [];
+
+      saveCart();
+
+      renderCart();
+
+      alert("Your order has been cleared.");
+    }
+
+  };
+}
   renderCart();
   updateCartCount();
   location.href="index.html";
