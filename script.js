@@ -137,28 +137,21 @@ cart = [];
 saveCart();
 renderCartUI();
 animateCartCount();}}
-  renderCartUI();
-
-  // Expose for debugging
-  window._cart = { get: () => cart, add: addToCart, remove: removeFromCart };
+renderCartUI();
+window._cart = { get: () => cart, add: addToCart, remove: removeFromCart };
 });
-// Add this near the top of script.js (or replace your existing searchProducts)
 let _searchTimeout = null;
-
 window.searchProducts = function () {
-  // debounce so typing is smooth
-  clearTimeout(_searchTimeout);
-  _searchTimeout = setTimeout(() => {
-    const input = document.getElementById("searchInput");
-    if (!input) return;
-    const q = input.value.trim().toLowerCase();
-    const products = document.querySelectorAll(".af");
-    let anyVisible = false;
-
-    products.forEach(product => {
-      // find the title inside the card (h2)
-      const titleEl = product.querySelector("h2");
-      const title = titleEl ? titleEl.innerText.trim().toLowerCase() : "";
+clearTimeout(_searchTimeout);
+_searchTimeout = setTimeout(() => {
+const input = document.getElementById("searchInput");
+if (!input) return;
+const q = input.value.trim().toLowerCase();
+const products = document.querySelectorAll(".af");
+let anyVisible = false;
+products.forEach(product => {
+const titleEl = product.querySelector("h2");
+const title = titleEl ? titleEl.innerText.trim().toLowerCase() : "";
 
       // if title missing, try alt text of image as fallback
       if (!title && product.querySelector("img")) {
