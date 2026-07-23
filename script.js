@@ -122,6 +122,7 @@ renderCartUI();
 window._cart={get:()=>cart,add:addToCart,remove:removeFromCart};
 });
 let _searchTimeout;
+// Searches for top 
 window.searchProducts=()=>{
 clearTimeout(_searchTimeout);
 _searchTimeout=setTimeout(()=>{

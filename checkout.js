@@ -1,6 +1,7 @@
 //checkout.js
 (() => {
-let cart = (JSON.parse(localStorage.getItem("cart")) || []).map(i => ({
+// Loads the shopping cart from local storage
+  let cart = (JSON.parse(localStorage.getItem("cart")) || []).map(i => ({
 name: i.name || "Item",
 price: +i.price || 0,
 qty: +i.qty || 1,
@@ -25,6 +26,7 @@ if (el) el.innerText = cart.reduce((t,i)=>t+i.qty,0);
 function updateTotal() {
 totalPriceEl.innerText = `Total: $${cart.reduce((t,i)=>t+i.price*i.qty,0).toFixed(2)}`;
 }
+// shows all the tops on the checkout page
 function renderCart() {
 checkoutItemsEl.innerHTML = "";
 if (!cart.length) {
@@ -149,6 +151,7 @@ updateCartCount();
 location.href="index.html";
 }
 continueShoppingBtn.onclick=()=>location.href="index.html";
+// uses the discount code if the code is correct
 document.getElementById("applyDiscountBtn").onclick=()=>{
 const code=document.getElementById("discountCode").value;
 if(code==="FOOTBALL10"){
@@ -161,6 +164,7 @@ document.getElementById("discountMessage").innerText="Invalid code.";}
 completeOrderBtn.onclick=completeOrder;
 const resetOrderBtn = document.getElementById("resetOrderBtn");
 if(resetOrderBtn){
+// Clears the shopping cart and starts a new order
 resetOrderBtn.onclick = () => {
 if(confirm("Are you sure you want to clear your order?")){
 cart = [];
