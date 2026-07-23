@@ -1,5 +1,6 @@
 console.log("script.js loaded");
 document.addEventListener("DOMContentLoaded",()=>{
+// Stores all the tops the costomer adds to the shopping cart
 let cart=JSON.parse(localStorage.getItem("cart"))||[];
 const  cartCount=document.getElementById("cartCount"),
 cartItems=document.getElementById("cartItems"),
@@ -42,6 +43,7 @@ item.price=+item.price||0;
 const e=cart.find(c=>c.name===item.name&&+c.price===item.price);
 e?e.qty+=item.qty:cart.push(item);
 saveCart();
+// shows all tops in the shopping cart
 renderCartUI();
 animateCartCount();
 }
