@@ -1,7 +1,7 @@
 //checkout.js
 (() => {
 // Loads the shopping cart from local storage
-  let cart = (JSON.parse(localStorage.getItem("cart")) || []).map(i => ({
+let cart = (JSON.parse(localStorage.getItem("cart")) || []).map(i => ({
 name: i.name || "Item",
 price: +i.price || 0,
 qty: +i.qty || 1,
