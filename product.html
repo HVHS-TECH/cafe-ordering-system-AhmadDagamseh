@@ -38,23 +38,19 @@ img: img || "",
 qty: 1
 };
 // link together/merge
-    const existing = cart.find(c => c.name === item.name && Number(c.price) === Number(item.price));
-    if (existing) existing.qty = Number(existing.qty || 0) + 1;
-    else cart.push(item);
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    // update badge if present
-    const cartCount = document.getElementById("cartCount");
-    if (cartCount) {
-      const totalItems = cart.reduce((s, it) => s + Number(it.qty || 0), 0);
-      cartCount.innerText = totalItems;
-    }
-    alert("Added to cart");
-  });
+const existing = cart.find(c => c.name === item.name && Number(c.price) === Number(item.price));
+if (existing) existing.qty = Number(existing.qty || 0) + 1;
+else cart.push(item);
+localStorage.setItem("cart", JSON.stringify(cart));
+// update badge if it is there
+const cartCount = document.getElementById("cartCount");
+if (cartCount) {
+const totalItems = cart.reduce((s, it) => s + Number(it.qty || 0), 0);
+cartCount.innerText = totalItems;
+}
+alert("Added to cart");
+});
 </script>
-
-</script>
-
 </body>
 </html>
 

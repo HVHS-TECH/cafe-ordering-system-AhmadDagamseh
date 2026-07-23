@@ -1,11 +1,9 @@
 console.log("script.js loaded");
-
 document.addEventListener("DOMContentLoaded",()=>{
 let cart=JSON.parse(localStorage.getItem("cart"))||[];
-
 const  cartCount=document.getElementById("cartCount"),
-      cartItems=document.getElementById("cartItems"),
-      cartPanel=document.getElementById("cartPanel");
+cartItems=document.getElementById("cartItems"),
+cartPanel=document.getElementById("cartPanel");
 
 const saveCart=()=>localStorage.setItem("cart",JSON.stringify(cart));
 
