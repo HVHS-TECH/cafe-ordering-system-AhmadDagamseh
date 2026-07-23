@@ -37,6 +37,7 @@ ${i.img?`<img src="${escapeHtml(i.img)}" style="width:48px;height:48px;object-fi
 Items: ${cart.reduce((t,i)=>t+ +i.qty,0)}
 </div>`;
 }
+// Adds a product to the cart or increases its quantity
 function addToCart(item){
 item.qty=+item.qty||1;
 item.price=+item.price||0;
