@@ -2,42 +2,35 @@
 margin: 0px;
 padding: 0px;
 }
-
 body{
 margin: 0;
 }
-
 .logo {
 margin-right: 100px;
 justify-content: left;
 border-radius: 40px;
 box-shadow:8px 8px 16px 0px rgba(0, 0, 0, 0.5);
 }
-  
 .as{
 display: flex;
 gap: 20px;
 padding: 50px;
 margin: 0 auto;
 }
-
 #ad{
 text-align: center;
 margin-bottom: 30px;
 }
- 
 .containor{
 display: flex;
 justify-content: center;
 margin-top: 100px;
 }
-
 .containor2{
 display: flex;
 justify-content: center;
 margin-top: 100px;
 }
-
 .af{
 width: 90%;
 max-width: 1200px;
@@ -45,9 +38,7 @@ border-radius: 30px;
 overflow: hidden;
 box-shadow:8px 8px 16px 0px rgba(0, 0, 0, 0.5);
 margin: 20px;
-
 }
-
 .af img{
 width: 100%;
 height: auto;
@@ -59,25 +50,19 @@ border-radius: 30px;
 overflow: hidden;
 box-shadow:8px 8px 16px 0px rgba(0, 0, 0, 0.5);
 margin: 20px;
-
 }
-
 .ag img{
 width: 100%;
 height: auto;
 }
-
-
 .content{
 padding: 16px;
 }
-
 .content h2{
 text-align: center;
 font-size: 28px;
 margin: 10px;
 }
-
 .content h3{
 text-align: center;
 font-size: 18px;
@@ -87,82 +72,24 @@ margin: 10px;
 color: rgb(112, 112, 112);
 background-color:rgba(255, 255, 255, 0);
 }
-
-
 .cont {
 display: flex;
 flex-direction: column;
 align-items: center;
 }
-
-
 ul{
 margin-bottom: 20px;
 flex-wrap: wrap;
 justify-content: center;
 }
-
-
 li{
 padding: 0 15px;
 margin-bottom: 16px;
 }
-
-
 a{
 font-size: 14px;
 font-weight: 500;
 color: white;
-}
-.navbar ul {
-list-style-type: none;
-margin: 0;
-padding: 10px;
-background-color: #000000;
-justify-content: center;
-}
-
-
-
-
-.navbar li a {
-color: white;
-padding: 14px 20px;
-text-decoration: none;
-display: block;
-text-align: center;
-}
-
-
-
-
-.navbar li a:hover {
-background-color: #888888a4;
-}
-.navbar2 ul {
-list-style-type: none;
-margin: 0;
-padding: 10px;
-background-color: #000000;
-justify-content: center;
-}
-
-
-
-
-.navbar2 li a {
-color: white;
-padding: 14px 20px;
-text-decoration: none;
-display: block;
-text-align: center;
-}
-
-
-
-
-.navbar2 li a:hover {
-background-color: #888888;
 }
 
 body.home {
