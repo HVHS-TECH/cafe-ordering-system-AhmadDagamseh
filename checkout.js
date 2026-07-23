@@ -164,7 +164,7 @@ margin-top:12px;
 <hr>
 
 <p class="total">Total Cost: $${orderTotal.toFixed(2)}</p>
-          
+            
 <p>Money Given: $${money.toFixed(2)}</p>
 
 <p>Change: $${change.toFixed(2)}</p>
